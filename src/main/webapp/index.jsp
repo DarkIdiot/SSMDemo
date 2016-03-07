@@ -7,9 +7,11 @@
 <title>登陆页面</title>
 </head>
 <body>
-	<form action="index" method="post">
-		<input type="text" name="name"> <input type="password"
-			name="password"> <input type="submit" value="确认">
+	<form action="user/login" method="post">
+		<center><h1>登陆界面</h1></center>
+		<center><h1>name:<input type="text" name="username"></h1></center>
+		<center><h1>password:<input type="password" name="password"></h1></center> 
+		<center><input type="submit" value="确认"></center>
 	</form>
 </body>
 </html>

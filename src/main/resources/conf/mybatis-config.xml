@@ -3,8 +3,17 @@
 PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-	<!-- 命名空间 -->
+	
+	<!-- 全局的setting配置 -->
+	
+	<!-- 配置别名 -->
 	<typeAliases>
-		<typeAlias alias="User" type="com.demo.model.User" />
+		<!-- 批量扫描别名 -->
+		<package name="com.demo.model"/>
 	</typeAliases>
+	
+	<!-- 配置mapper -->
+	<!-- 由于使用SpringMVC和MyBatis的整合包进行mapper扫描，这里就不需要配置。
+		但是,mapper.xml和mapper.java文件必须同名切在一个目录.
+	 -->
 </configuration>

@@ -1,35 +1,45 @@
 package com.demo.model;
 
-/**
- * 用户表
- */
+import java.util.Date;
+
 public class User {
+    private Integer id;
 
-	private int id;
-	private String name;
-	private String password;
+    private String username;
 
-	public int getId() {
-		return id;
-	}
+    private String password;
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    private Date birthday;
 
-	public String getName() {
-		return name;
-	}
+    public Integer getId() {
+        return id;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public String getPassword() {
-		return password;
-	}
+    public String getUsername() {
+        return username;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
 }

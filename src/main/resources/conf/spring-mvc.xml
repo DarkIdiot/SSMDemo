@@ -1,30 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-  xmlns:p="http://www.springframework.org/schema/p"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xmlns:context="http://www.springframework.org/schema/context"
-  xmlns:mvc="http://www.springframework.org/schema/mvc"
-  xsi:schemaLocation="
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="
     http://www.springframework.org/schema/beans
-    http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+    http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
     http://www.springframework.org/schema/context
-    http://www.springframework.org/schema/context/spring-context-3.2.xsd
+    http://www.springframework.org/schema/context/spring-context-4.0.xsd
     http://www.springframework.org/schema/mvc
-    http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd">
-    
-    <!-- 扫描文件（自动注入）,包括DAO层注入Service层，Service层注入Controller层 -->
-    <context:component-scan base-package="com.demo"/>
-    <mvc:annotation-driven />
-   <!-- 避免IE在ajax请求时，返回json出现下载 -->
-   <bean id="jacksonMessageConverter" class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">     
-        <property name="supportedMediaTypes">
-            <list>
-                <value>text/html;charset=UTF-8</value>
-            </list>
-        </property>
-    </bean>
-     
-   <!-- 对模型视图添加前后缀 -->
-     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver"
-      p:prefix="/WEB-INF/jsp/" p:suffix=".jsp"/>
+    http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
+	
+	
+	<!-- 实现controller的bean -->
+	<bean id="ItemsContriller1" name="/ItemsContriller.do" class="com.demo.controller.ItemsController" />
+	<bean id="ItemsContriller2" class="com.demo.controller.ItemsHttpRequestHandler" />
+	<!-- 处理器适配器(所有的适配器都实现了HandlerAdapter接口)，可以配置多个处理器适配器 -->
+	<!-- 此适配器执行实现Controller接口的handler -->
+	<bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter" />
+	<!-- 此适配器执行实现HttpRequestHandler接口的handler -->
+	<bean class="org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter" />
+
+	<!-- 处理器映射器(所有的映射器都实现了HandlerMapping接口) -->
+	<!-- 将bean的name当作URL来作为映射,需要在配置handler时指定beanname(URL) -->
+	<bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping" />
+
+	<bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<props>
+				<prop key="/ItemsContriller1.do">ItemsContriller1</prop>
+				<prop key="/ItemsHttpRequest.action">ItemsContriller2</prop>
+			</props>
+		</property>
+	</bean>
+	
+	<!-- 在spring-webmvc包里的DispatcherServlet.properties里面默认配置了一些适配器,映射器,视图解析器,转换器，
+	如果不在spring_mvc.xml中配置,就会根据该文件进行加载所有未配置的组件.(也就是说,在不配置上面的非注解的映射器和适配器的情况下,
+	springmvc照样会加载DispatcherServlet.properties指定的组件) -->
+	
+	<!-- annotation 开发 -->
+	<!-- 3.1之前：映射器:org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter,适配器org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping -->
+	<!-- 3.1之后使用的annotation的映射器和适配器 -->
+	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter"/>
+		<!-- 手动加载适配器bean --><!-- java.lang.IllegalStateException: Ambiguous mapping found.两种加载适配器的方式只能存在一种，否则会抛以上异常 -->
+		<!-- <bean class="com.demo.controller.ItemsAnnotationController"/>   //被注释掉，不使用 -->
+		<!-- 使用组件扫描的方式加载适配器,@Controller,@Service,@Repository -->
+		<context:component-scan base-package="com.demo.controller,com.demo.service.impl,com.demo.dao"/>
+	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"/>
+	
+	<!-- 使用mvc:annotation-driven代替上边的2个注解映射器和适配器，mvc:annotation-driven默认还加载了很多的参数绑定方法，eg:json转换解析器就被默认加载了. -->
+	<mvc:annotation-driven conversion-service="conversionService"/>
+	
+	
+	<!-- 视图解析器 -->
+	<!-- 解析jsp视图,默认使用jstl标签,classpath下面必须有jstl.jar -->
+	<!-- <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" /> -->
+	<!--  -->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" >
+		<property name="prefix" value="/WEB-INF/jsp/"></property>
+		<property name="suffix" value=".jsp"></property>
+	</bean>
+	
+	<!-- 自定义参数绑定 -->
+	<bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+		<!-- 转换器 -->
+		<property name="converters">
+			<list>
+				<bean class="com.demo.converter.DateConverter"/>
+			</list>
+		</property>
+	</bean>  
 </beans>

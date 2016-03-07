@@ -5,16 +5,17 @@
 	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:util="http://www.springframework.org/schema/util"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
-    http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+    http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
     http://www.springframework.org/schema/context
-    http://www.springframework.org/schema/context/spring-context-3.2.xsd
+    http://www.springframework.org/schema/context/spring-context-4.0.xsd
     http://www.springframework.org/schema/tx
-    http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
+    http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
     http://www.springframework.org/schema/aop
-    http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
+    http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
     http://www.springframework.org/schema/util 
-    http://www.springframework.org/schema/util/spring-util-3.2.xsd">
-
+    http://www.springframework.org/schema/util/spring-util-4.0.xsd">
+	<!-- <import resource="classpath:conf/spring-mvc.xml"/>  使用import标签带入其他的spring的配置文件-->
+	
 	<!-- 引入jdbc配置文件 -->
     <context:property-placeholder location="classpath:conf/jdbc.properties"/>
     
@@ -25,19 +26,35 @@
 		<property name="username" value="${jdbc_username}" />
 		<property name="password" value="${jdbc_password}" />
 	</bean>
-
 	<!-- mybatis文件配置，扫描所有mapper文件 -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"
 		p:dataSource-ref="dataSource" p:configLocation="classpath:conf/mybatis-config.xml"
-		p:mapperLocations="classpath:mapper/*.xml" /><!-- configLocation为mybatis属性 
-		mapperLocations为所有mapper -->
-
+		p:mapperLocations="classpath:com/demo/dao/mapper/*Mapper.xml" /><!-- configLocation为mybatis属性mapperLocations为所有mapper -->
+		
 	<!-- spring与mybatis整合配置，扫描所有dao ,生成与DAO类相同名字的bean（除了首字母小写）-->
+	<!-- 注入sqlSessionFactoryBeanName而非sqlSessionFactory:是由于本文件上面使用了property-placeholder,
+	如果使用sqlSessionFactory就会导致配置文件替换占位符失败,进而连接不上数据库 -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer"
 		p:basePackage="com.demo.dao" p:sqlSessionFactoryBeanName="sqlSessionFactory" />
 
-	<!-- 对数据源进行事务管理 -->
+	<!-- 对数据源进行事务管理,spring使用jdbc的事务控制 -->
 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
 		p:dataSource-ref="dataSource" />
-	<tx:annotation-driven mode="proxy" transaction-manager="transactionManager" />
+	<!-- 通知 -->
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="save*" propagation="REQUIRED"/>
+			<tx:method name="delete*" propagation="REQUIRED"/>
+			<tx:method name="update*" propagation="REQUIRED"/>
+			<tx:method name="insert*" propagation="REQUIRED"/>
+			<tx:method name="find*" propagation="SUPPORTS" read-only="true"/>
+			<tx:method name="get*" propagation="SUPPORTS" read-only="true"/>
+			<tx:method name="select*" propagation="SUPPORTS" read-only="true"/>
+		</tx:attributes>
+	</tx:advice>
+	<aop:config>
+		<aop:advisor advice-ref="txAdvice" pointcut="execution ( * com.demo.service.impl.*.*(..))"/>
+	</aop:config>
+	<!-- 对@Transactional这个注解进行的驱动，这是基于注解的方式使用事务配置声明，这样在具体应用中可以指定对哪些方法使用事务。-->
+	<!-- <tx:annotation-driven mode="proxy" transaction-manager="transactionManager" /> -->
 </beans>
