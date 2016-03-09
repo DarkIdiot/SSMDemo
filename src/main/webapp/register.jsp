@@ -4,7 +4,8 @@
 	<center>
 		<h1>Hello World!我们都是好孩子</h1>
 	</center>
-	<form name="from" action="user/showuser.do" method="post">
+	
+	<form  action="user/register.do" method="post">
 		<table width="400" border="1" align="center">
 
 			<tr>
@@ -20,8 +21,8 @@
 				<td><input type="password" name="password" size="30"></td>
 			</tr>
 			<tr>
-				<td>性别</td>
-				<td><input type="text" name="sex" size="30"></td>
+				<td>出生日期</td>
+				<td><input type="text" name="birthday" size="30"></td>
 			</tr>
 
 			<tr>

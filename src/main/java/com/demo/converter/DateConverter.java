@@ -15,14 +15,12 @@ public class DateConverter implements Converter<String, Date> {
 
 	@Override
 	public Date convert(String source) {
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-DD HH:mm:ss");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		try {
 			return sdf.parse(source);
 		} catch (ParseException e) {
 			e.printStackTrace();
-		}finally{
-			return null;
 		}
+		return null;
 	}
-
 }

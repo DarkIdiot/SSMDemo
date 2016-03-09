@@ -24,7 +24,6 @@
 	<!-- 处理器映射器(所有的映射器都实现了HandlerMapping接口) -->
 	<!-- 将bean的name当作URL来作为映射,需要在配置handler时指定beanname(URL) -->
 	<bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping" />
-
 	<bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
 		<property name="mappings">
 			<props>
@@ -41,15 +40,15 @@
 	<!-- annotation 开发 -->
 	<!-- 3.1之前：映射器:org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter,适配器org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping -->
 	<!-- 3.1之后使用的annotation的映射器和适配器 -->
-	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter"/>
+	<!-- <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter"/> -->
 		<!-- 手动加载适配器bean --><!-- java.lang.IllegalStateException: Ambiguous mapping found.两种加载适配器的方式只能存在一种，否则会抛以上异常 -->
 		<!-- <bean class="com.demo.controller.ItemsAnnotationController"/>   //被注释掉，不使用 -->
 		<!-- 使用组件扫描的方式加载适配器,@Controller,@Service,@Repository -->
 		<context:component-scan base-package="com.demo.controller,com.demo.service.impl,com.demo.dao"/>
-	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"/>
+	<!-- <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"/> -->
 	
 	<!-- 使用mvc:annotation-driven代替上边的2个注解映射器和适配器，mvc:annotation-driven默认还加载了很多的参数绑定方法，eg:json转换解析器就被默认加载了. -->
-	<mvc:annotation-driven conversion-service="conversionService"/>
+	<mvc:annotation-driven conversion-service="conversionService" validator="validator"/>
 	
 	
 	<!-- 视图解析器 -->
@@ -70,4 +69,53 @@
 			</list>
 		</property>
 	</bean>  
+	
+	<!-- 校验器(一样需要注入HandlerAdapter中) -->
+	<!-- SpringMVC 使用hibernate的校验框架validation(和hibernate 没有任何关系):页面提交请求的参数，请求到controller方法中，使用validation进行校验.如果检验出错,将错误信息展示到页面 -->
+	<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+	<!-- Hibernate校验器 --> 
+		<property name="providerClass" value="org.hibernate.validator.HibernateValidator"/>
+	<!-- 指定校验使用的资源文件,在文件中配置校验错误信息,如果不指定则默认使用classpath下的ValidationMessage.properties-->
+		<property name="validationMessageSource" ref="messageSource"/>
+	</bean>
+	<!-- 校验错误信息配置文件 -->
+	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+	<!-- 资源文件编码格式 -->
+		<property name="fileEncodings" value="UTF-8" />
+	<!-- 对资源文件内容的缓存时间,单位秒 -->
+		<property name="cacheSeconds" value="120" />
+		<property name="basenames">
+			<list>
+				<value>classpath:CustomValidationMessages</value>				
+			</list>
+		</property>
+	</bean>
+	
+	<!-- 全局异常处理器,只要实现HandlerExceptionResolver接口的就是全局异常处理器 -->
+	<bean class="com.demo.exception.CustomerExceptionResolver" />
+	
+	<!-- 文件解析器 -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" 
+	p:maxUploadSize="5242880" />
+	
+	
+	<!-- 对静态资源的解析(jsp不算是静态资源文件):js,css,img,file,html -->
+	<mvc:resources location="/js/" mapping="/js/**"/>
+	<mvc:resources location="/img/" mapping="/img/**"/>
+	<mvc:resources location="/css/" mapping="/css/**"/>
+	<mvc:resources location="/css/" mapping="/css/**"/>
+
+	<!-- 拦截器 -->
+	<mvc:interceptors>
+		<!-- 多个拦截器,顺序执行 -->
+		<mvc:interceptor>
+			<!-- /** 表示所有的url,包括子url路径 -->
+			<mvc:mapping path="/**" />
+			<bean class="com.demo.interceptor.HandlerInterceptor1" />
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/**" />
+			<bean class="com.demo.interceptor.HandlerInterceptor2" />
+		</mvc:interceptor>
+	</mvc:interceptors>
 </beans>

@@ -15,8 +15,6 @@
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 
-
-
 	<!-- Spring字符集过滤器 -->
 	<filter>
 		<filter-name>SpringEncodingFilter</filter-name>
