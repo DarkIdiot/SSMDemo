@@ -54,7 +54,6 @@
 	<!-- 视图解析器 -->
 	<!-- 解析jsp视图,默认使用jstl标签,classpath下面必须有jstl.jar -->
 	<!-- <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" /> -->
-	<!--  -->
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" >
 		<property name="prefix" value="/WEB-INF/jsp/"></property>
 		<property name="suffix" value=".jsp"></property>
