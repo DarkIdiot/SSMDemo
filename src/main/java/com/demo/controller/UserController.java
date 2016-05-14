@@ -32,30 +32,30 @@ import com.demo.validation.ValidationGroup1;
 /**
  *
  * @author DarkIdiot-PC
- * @date 2016Äê3ÔÂ7ÈÕ ÏÂÎç2:45:48
+ * @date 2016å¹´3æœˆ7æ—¥ ä¸‹åˆ2:45:48
  */
-@Controller  //(±Ø²»¿ÉÉÙ)±êÊ¶´ËÀàÊÇÒ»¸öhandler´¦ÀíÀà
-@RequestMapping("/user")   //Õ­»¯ÇëÇóÂ·¾¶
+@Controller  //(å¿…ä¸å¯å°‘)æ ‡è¯†æ­¤ç±»æ˜¯ä¸€ä¸ªhandlerå¤„ç†ç±»
+@RequestMapping("/user")   //çª„åŒ–è¯·æ±‚è·¯å¾„
 public class UserController {
 	@Autowired
 	UserService userService;
 	
-	//	@ModelAttribute×¢½â±íÊ¾½«·½·¨×îÖÕ·µ»ØµÄÖµ·ÅÈërequestÖĞ,²¢Ê¹ÓÃÖ¸¶¨µÄkey
+	//	@ModelAttributeæ³¨è§£è¡¨ç¤ºå°†æ–¹æ³•æœ€ç»ˆè¿”å›çš„å€¼æ”¾å…¥requestä¸­,å¹¶ä½¿ç”¨æŒ‡å®šçš„key
 	/**
-	 * ´Ë·½·¨ÊÇĞ´ÔÚUserControllerÄÚ,ÄÇÃ´Ö´ĞĞUserControllerÄÚ´øÓĞ@RequestMappingµÄ·½·¨Ö®Ç°,
-	 * ¶¼»áÏÈÖ´ĞĞ´ËgetTypes·½·¨.²¢ÇÒÖ´ĞĞµÄ¹ı³ÌÖĞ»á½«ĞÎ²ÎÖĞµÄpojoºÍ·½·¨µÄ·µ»ØÖµ×°ÈërequestÓò,²¢ÉèÖÃkeyÎªÄ¬ÈÏÖµ»òÖ¸¶¨µÄÖµ.
+	 * æ­¤æ–¹æ³•æ˜¯å†™åœ¨UserControllerå†…,é‚£ä¹ˆæ‰§è¡ŒUserControllerå†…å¸¦æœ‰@RequestMappingçš„æ–¹æ³•ä¹‹å‰,
+	 * éƒ½ä¼šå…ˆæ‰§è¡Œæ­¤getTypesæ–¹æ³•.å¹¶ä¸”æ‰§è¡Œçš„è¿‡ç¨‹ä¸­ä¼šå°†å½¢å‚ä¸­çš„pojoå’Œæ–¹æ³•çš„è¿”å›å€¼è£…å…¥requeståŸŸ,å¹¶è®¾ç½®keyä¸ºé»˜è®¤å€¼æˆ–æŒ‡å®šçš„å€¼.
 	 */
 	@ModelAttribute("map")
 	public Map<String,String> getTypes(){
 		Map<String, String> map = new HashMap<String, String>();
-		map.put("001","³¬¼¶¹ÜÀíÔ±");
-		map.put("002","ÆÕÍ¨¹ÜÀíÔ±");
-		map.put("003","»áÔ±");
+		map.put("001","è¶…çº§ç®¡ç†å‘˜");
+		map.put("002","æ™®é€šç®¡ç†å‘˜");
+		map.put("003","ä¼šå‘˜");
 		return map;
 	}
 	
 	
-	//¿ÉÒÔÊ¹ÓÃmethodÊôĞÔÏŞ¶¨httpÇëÇóµÄ·½·¨.     //ÏŞÖÆhttpÇëÇó·½·¨
+	//å¯ä»¥ä½¿ç”¨methodå±æ€§é™å®šhttpè¯·æ±‚çš„æ–¹æ³•.     //é™åˆ¶httpè¯·æ±‚æ–¹æ³•
 	@RequestMapping(value="/login",method={RequestMethod.POST,RequestMethod.GET})
 	public ModelAndView login(User user, HttpSession session) {
 		String name = user.getUsername();
@@ -73,17 +73,17 @@ public class UserController {
 		return mv;
 	}
 	/** 
-	 * 1.ÔÚĞèÒªĞ£ÑéµÄpojoÇ°±ßÌí¼Ó@ValidatedÇÒºó±ßÌí¼ÓĞÎ²ÎBindingResult,½ÓÊÜĞ£Ñé³ö´íĞÅÏ¢.NOTE:1.@ValidatedÓëBindingResultÊÇÅä¶ÔÊ¹ÓÃµÄ,ÇÒË³Ğò¹Ì¶¨.2.Ã¿Ò»¸öĞèÒªĞ£ÑéµÄpojo¶¼ĞèÒªÏìÓ¦µÄÅäÖÃ
-	 * 2.·Ö×éĞ£Ñé@Validated(value=ValidationGroup1.class),Ö¸¶¨Ê¹ÓÃValidationGroup1.class·Ö×éµÄĞ£Ñé.
+	 * 1.åœ¨éœ€è¦æ ¡éªŒçš„pojoå‰è¾¹æ·»åŠ @Validatedä¸”åè¾¹æ·»åŠ å½¢å‚BindingResult,æ¥å—æ ¡éªŒå‡ºé”™ä¿¡æ¯.NOTE:1.@Validatedä¸BindingResultæ˜¯é…å¯¹ä½¿ç”¨çš„,ä¸”é¡ºåºå›ºå®š.2.æ¯ä¸€ä¸ªéœ€è¦æ ¡éªŒçš„pojoéƒ½éœ€è¦å“åº”çš„é…ç½®
+	 * 2.åˆ†ç»„æ ¡éªŒ@Validated(value=ValidationGroup1.class),æŒ‡å®šä½¿ç”¨ValidationGroup1.classåˆ†ç»„çš„æ ¡éªŒ.
 	 */
 	/**
-	 * Êı¾İ»ØÏÔ:@ModelAttributeÖ¸¶¨pojo»ØÏÔµ½Ò³ÃærequestÓòÖĞµÄkey;(²»Ê¹ÓÃ×¢½â±íÊ¾²ÉÓÃÄ¬ÈÏ:ÀàĞÍÃûÊ××ÖÄ¸Ğ¡Ğ´)
+	 * æ•°æ®å›æ˜¾:@ModelAttributeæŒ‡å®špojoå›æ˜¾åˆ°é¡µé¢requeståŸŸä¸­çš„key;(ä¸ä½¿ç”¨æ³¨è§£è¡¨ç¤ºé‡‡ç”¨é»˜è®¤:ç±»å‹åé¦–å­—æ¯å°å†™)
 	 */
 	@RequestMapping(value="/register.do",method={RequestMethod.POST})
 	public String regitser(@ModelAttribute("user") @Validated(value=ValidationGroup1.class) User user, BindingResult bindingResult,Model model) {
-		//Ğ£Ñé³ö´íÂß¼­´úÂë
+		//æ ¡éªŒå‡ºé”™é€»è¾‘ä»£ç 
 		if (bindingResult.hasErrors()) {
-			//±éÀúËùÓĞµÄ´íÎóĞÅÏ¢
+			//éå†æ‰€æœ‰çš„é”™è¯¯ä¿¡æ¯
 			List<ObjectError> allErrors = bindingResult.getAllErrors();
 			for (ObjectError error : allErrors) {
 				error.getDefaultMessage();
@@ -92,8 +92,8 @@ public class UserController {
 		}
 		
 		model.addAttribute("user", userService.register(user));
-		//ÖØ¶¨Ïò   return "redirect:index";
-		//Ò³Ãæ×ª·¢(¹²Ïírequest) return "forward:index";
+		//é‡å®šå‘   return "redirect:index";
+		//é¡µé¢è½¬å‘(å…±äº«request) return "forward:index";
 		return "forward:login";
 	}
 	
@@ -108,7 +108,7 @@ public class UserController {
 	}
 	
 	/**
-	 *	´«ÈëList<POJO> ĞèÒª·â×°ÔÚVOÀïÃæ£¬»òÕß×ª»»Îªjson¸ñÊ½µÄ×Ö·û´®£¬ÊµÏÖÊÖ¶¯µÄ×ª»¯¡£ 
+	 *	ä¼ å…¥List<POJO> éœ€è¦å°è£…åœ¨VOé‡Œé¢ï¼Œæˆ–è€…è½¬æ¢ä¸ºjsonæ ¼å¼çš„å­—ç¬¦ä¸²ï¼Œå®ç°æ‰‹åŠ¨çš„è½¬åŒ–ã€‚ 
 	 */
 	@RequestMapping("/addListUser")
 	public ModelAndView addListUser(UserVo uv){
@@ -125,7 +125,7 @@ public class UserController {
 	}
 	
 	/**
-	 *	´«ÈëMap<String,POJO> ĞèÒª·â×°ÔÚVOÀïÃæ£¬»òÕß×ª»»Îªjson¸ñÊ½µÄ×Ö·û´®£¬ÊµÏÖÊÖ¶¯µÄ×ª»¯¡£ 
+	 *	ä¼ å…¥Map<String,POJO> éœ€è¦å°è£…åœ¨VOé‡Œé¢ï¼Œæˆ–è€…è½¬æ¢ä¸ºjsonæ ¼å¼çš„å­—ç¬¦ä¸²ï¼Œå®ç°æ‰‹åŠ¨çš„è½¬åŒ–ã€‚ 
 	 */
 	@RequestMapping("/addMapUser")
 	public ModelAndView addMapUser(UserVo uv){
@@ -144,19 +144,19 @@ public class UserController {
 	@RequestMapping("/logout")
 	public void logout(HttpSession session,HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException{
 		/*
-		 * ÒµÎñÂß¼­
+		 * ä¸šåŠ¡é€»è¾‘
 		 */
 		session.invalidate();
 		
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("application/json,charset=utf-8");
-		response.getWriter().write("json´®");
+		response.getWriter().write("jsonä¸²");
 
-		//ÀàËÆÓÚservletµÄ±à³Ì.  
+		//ç±»ä¼¼äºservletçš„ç¼–ç¨‹.  
 		request.setAttribute("result", "success");
-		//×ª·¢£¬ÓÉÓÚÊÇµ÷ÓÃµÄÔ­ÉúµÄservlet api,ËùÒÔ¶ÔÓÚÊÓÍ¼½âÎöÆ÷ÅäÖÃµÄÇ°×ººÍºó×º²»»á¶Ô´ËhandlerÉúĞ§.
+		//è½¬å‘ï¼Œç”±äºæ˜¯è°ƒç”¨çš„åŸç”Ÿçš„servlet api,æ‰€ä»¥å¯¹äºè§†å›¾è§£æå™¨é…ç½®çš„å‰ç¼€å’Œåç¼€ä¸ä¼šå¯¹æ­¤handlerç”Ÿæ•ˆ.
 		request.getRequestDispatcher("/WEB-INF/jsp/success.jsp").forward(request, response);
-		//ÖØ¶¨Ïò
+		//é‡å®šå‘
 //		response.sendRedirect("/WEB-INF/jsp/success.jsp"); 
 	}
 	
@@ -166,7 +166,7 @@ public class UserController {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("showUser");
 		if (true) {
-			throw new SystemException("ÏµÍ³ÄÚ²¿×Ô¶¨ÒåÒì³£");
+			throw new SystemException("ç³»ç»Ÿå†…éƒ¨è‡ªå®šä¹‰å¼‚å¸¸");
 		}
 		return mv;
 	}
@@ -177,36 +177,36 @@ public class UserController {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("showUser");
 		if (true) {
-			throw new RuntimeException("ÔËĞĞÊ±Å×³öµÄÎ´ÖªÒì³£");
+			throw new RuntimeException("è¿è¡Œæ—¶æŠ›å‡ºçš„æœªçŸ¥å¼‚å¸¸");
 		}
 		return mv;
 	}
 }
-/** 1.·µ»ØModelAndView:
- * 	ĞèÒª·½·¨½áÊøÊ±,¶¨ÒåModelAndView,½«modelºÍview·Ö±ğ½øĞĞÉèÖÃ.
- * 	2.·µ»ØString:
- * 	Èç¹ûcontroller·½·¨·µ»Østring,Ôò±íÊ¾·µ»ØÂß¼­ÊÓÍ¼Ãû(Ö§³ÖÖØ¶¨Ïò,×ª·¢).ÕæÕıÊÓÍ¼(Â·¾¶)=Ç°×º+Âß¼­ÊÓÍ¼Ãû+ºó×º;Ê¹ÓÃĞÎ²ÎÖĞµÄModel½«modelÊı¾İ·µ»Ø¸øÊÓÍ¼.
- * 	3.·µ»Øvoid
+/** 1.è¿”å›ModelAndView:
+ * 	éœ€è¦æ–¹æ³•ç»“æŸæ—¶,å®šä¹‰ModelAndView,å°†modelå’Œviewåˆ†åˆ«è¿›è¡Œè®¾ç½®.
+ * 	2.è¿”å›String:
+ * 	å¦‚æœcontrolleræ–¹æ³•è¿”å›string,åˆ™è¡¨ç¤ºè¿”å›é€»è¾‘è§†å›¾å(æ”¯æŒé‡å®šå‘,è½¬å‘).çœŸæ­£è§†å›¾(è·¯å¾„)=å‰ç¼€+é€»è¾‘è§†å›¾å+åç¼€;ä½¿ç”¨å½¢å‚ä¸­çš„Modelå°†modelæ•°æ®è¿”å›ç»™è§†å›¾.
+ * 	3.è¿”å›void
  */
-/**	SpringMVC½ÓÊÕ´Ó¿Í·ş¶Ë(Ò³Ãæ)ÇëÇókey/valueÊı¾İ,¾­¹ı²ÎÊı°ó¶¨,½«key/valueÊı¾İ°ó¶¨µ½controller·½·¨µÄĞÎ²ÎÉÏ.(²¢²»ÊÇÀàËÆÓÚstruts2µÄÔÚcontrollerÀàÖĞ¶¨Òå³ÉÔ±±äÁ¿½ÓÊÜ.)
- * 1.´¦ÀíÆ÷ÊÊÅäÆ÷µ÷ÓÃSpringMVCÌá¹©²ÎÊı°ó¶¨×é¼ş,½«key/valueÊı¾İ×ª³Écontroller·½·¨µÄĞÎ²Î.
- * 2.²ÎÊı°ó¶¨×é¼ş:ÔÚSpingMVCÔçÆÚ°æ±¾Ê¹ÓÃPropertyEditor(Ö»ÄÜ½«×Ö·û´®´«³Éjava¶ÔÏó);ºóÆÚÊ¹ÓÃconverter(½øĞĞÈÎÒâÀàĞÍµÄ×ª»»)
- * 		SpringMVCÌá¹©ÁËºÜ¶àconverter(×ª»»Æ÷),ÔÚÌØÊâÇé¿ö(ÈÕÆÚÊı¾İµÈµÈ)ÏÂĞèÒª×Ô¶¨Òåconverter.
- * 3.²ÎÊı°ó¶¨Ä¬ÈÏÖ§³ÖµÄÀàĞÍ:Ö±½ÓÔÚcontroller·½·¨ĞÎ²ÎÉÏ¶¨ÒåµÄÀàĞÍ¶ÔÏó,¾Í¿ÉÒÔÖ±½ÓÊ¹ÓÃÕâĞ©¶ÔÏó,ÔÚ²ÎÊı°ó¶¨µÄ¹ı³ÌÖĞ,Èç¹ûÓöµ½Ä¬ÈÏÖ§³ÖµÄÀàĞÍ¾ÍÖ±½Ó½øĞĞ°ó¶¨.
- *    HttpServletRequest(Í¨¹ırequest¶ÔÏó»ñÈ¡ÇëÇóĞÅÏ¢),HttpServletResponse(Í¨¹ıresponse´¦ÀíÏìÓ¦ĞÅÏ¢),HttpSession(Í¨¹ısession¶ÔÏóµÃµ½sessionÖĞ´æ·ÅµÄÊı¾İ),Model/ModelMap(ModelMapÊÇModel½Ó¿ÚµÄÊµÏÖÀà,Í¨¹ıModel»òModelMapÏòÒ³Ãæ´«µİÊı¾İ)
- * 4.@RequestParam¶Ô¼òµ¥ÀàĞÍµÄ²ÍËŞ°ó¶¨.Èç¹û²»Ê¹ÓÃ@RequestParam,ÒªÇórequest´«ÈëµÄ²ÎÊıÃû³ÆºÍcontroller·½·¨µÄĞÎ²ÎÃû³ÆÒ»ÖÂ,²ÅÄÜ°ó¶¨³É¹¦.Ê¹ÓÃ@RequestParam²»ÓÃÏŞÖÆrequest´«Èë²ÎÊıÃû³ÆºÍcontroller·½·¨µÄĞÎ²ÎÃû³ÆÒ»ÖÂ.
- *    ¸Ã×¢½âµÄÊôĞÔrequired=trueÖ¸¶¨²ÎÊı±ØĞë´«Èë,·ñÔò·µ»Ø400´íÎó;ÊôĞÔdefaultValueÉèÖÃÄ¬ÈÏÖµ,Ã»ÓĞ´«Èë²ÎÊıÔòÊ¹ÓÃÄ¬ÈÏÖµÓëĞÎ²Î°ó¶¨.
- * 5.°ó¶¨pojo:»á°´ÇëÇó²ÎÊıÃûºÍ POJO ÊôĞÔÃû½øĞĞ×Ô¶¯Æ¥Åä£¬×Ô¶¯Îª¸Ã¶ÔÏóÌî³äÊôĞÔÖµ¡£Ö§³Ö¼¶ÁªÊôĞÔ¡£
- * 	  postÂÒÂë:ÔÚweb.xmlÖĞÌí¼Ó±àÂëµÄ¹ıÂËÆ÷org.springframework.web.filter.CharacterEncodingFilter,²¢Ö¸¶¨ÎªUTF-8×Ö·û¼¯
- *    getÂÒÂë:1)ĞŞ¸ÄtomcatµÄÅäÖÃÎÄ¼ş,Ê¹µÃÆä±àÂëºÍ¹¤³ÌÊ¹ÓÃµÄ±àÂë×Ö·û¼¯Ò»ÖÂ;server.xml <Connector port="8090" protocol="HTTP/1.1" maxThreads="150" connectionTimeout="20000" redirectPort="8443" URIEncoding="utf-8"/>  
- *    		  2)new String(request.getParameter("name").getBytes("ISO8859-1"),"UTF-8"),ÊÖ¶¯µÄÍê³É±àÂë×Ö·û¼¯µÄ×ª»»;
- * 6.×Ô¶¨Òå²ÎÊı°ó¶¨:ĞèÒªÊµÏÖorg.springframework.core.convert.converter.Converter½Ó¿Ú²¢×¢²áµ½org.springframework.format.support.FormattingConversionServiceFactoryBeanÖĞ£¬²¢ÇÒ°Ñ×Ô¶¨ÒåµÄ²ÎÊı°ó¶¨×é¼ş×¢²áµ½HandlerAdapterÀïÃæ.
- * 		Á½ÖÖ×¢ÈëµÄ·½Ê½: 1)<mvc:annotation-driven conversion-service="conversionService"/>(±ØĞë×¢ÊÍRequestMappingHandlerAdapter,RequestMappingHandlerMapping,·ñÔò»á³öÏÖ400´íÎó syntactically incorrect)
+/**	SpringMVCæ¥æ”¶ä»å®¢æœç«¯(é¡µé¢)è¯·æ±‚key/valueæ•°æ®,ç»è¿‡å‚æ•°ç»‘å®š,å°†key/valueæ•°æ®ç»‘å®šåˆ°controlleræ–¹æ³•çš„å½¢å‚ä¸Š.(å¹¶ä¸æ˜¯ç±»ä¼¼äºstruts2çš„åœ¨controllerç±»ä¸­å®šä¹‰æˆå‘˜å˜é‡æ¥å—.)
+ * 1.å¤„ç†å™¨é€‚é…å™¨è°ƒç”¨SpringMVCæä¾›å‚æ•°ç»‘å®šç»„ä»¶,å°†key/valueæ•°æ®è½¬æˆcontrolleræ–¹æ³•çš„å½¢å‚.
+ * 2.å‚æ•°ç»‘å®šç»„ä»¶:åœ¨SpingMVCæ—©æœŸç‰ˆæœ¬ä½¿ç”¨PropertyEditor(åªèƒ½å°†å­—ç¬¦ä¸²ä¼ æˆjavaå¯¹è±¡);åæœŸä½¿ç”¨converter(è¿›è¡Œä»»æ„ç±»å‹çš„è½¬æ¢)
+ * 		SpringMVCæä¾›äº†å¾ˆå¤šconverter(è½¬æ¢å™¨),åœ¨ç‰¹æ®Šæƒ…å†µ(æ—¥æœŸæ•°æ®ç­‰ç­‰)ä¸‹éœ€è¦è‡ªå®šä¹‰converter.
+ * 3.å‚æ•°ç»‘å®šé»˜è®¤æ”¯æŒçš„ç±»å‹:ç›´æ¥åœ¨controlleræ–¹æ³•å½¢å‚ä¸Šå®šä¹‰çš„ç±»å‹å¯¹è±¡,å°±å¯ä»¥ç›´æ¥ä½¿ç”¨è¿™äº›å¯¹è±¡,åœ¨å‚æ•°ç»‘å®šçš„è¿‡ç¨‹ä¸­,å¦‚æœé‡åˆ°é»˜è®¤æ”¯æŒçš„ç±»å‹å°±ç›´æ¥è¿›è¡Œç»‘å®š.
+ *    HttpServletRequest(é€šè¿‡requestå¯¹è±¡è·å–è¯·æ±‚ä¿¡æ¯),HttpServletResponse(é€šè¿‡responseå¤„ç†å“åº”ä¿¡æ¯),HttpSession(é€šè¿‡sessionå¯¹è±¡å¾—åˆ°sessionä¸­å­˜æ”¾çš„æ•°æ®),Model/ModelMap(ModelMapæ˜¯Modelæ¥å£çš„å®ç°ç±»,é€šè¿‡Modelæˆ–ModelMapå‘é¡µé¢ä¼ é€’æ•°æ®)
+ * 4.@RequestParamå¯¹ç®€å•ç±»å‹çš„é¤å®¿ç»‘å®š.å¦‚æœä¸ä½¿ç”¨@RequestParam,è¦æ±‚requestä¼ å…¥çš„å‚æ•°åç§°å’Œcontrolleræ–¹æ³•çš„å½¢å‚åç§°ä¸€è‡´,æ‰èƒ½ç»‘å®šæˆåŠŸ.ä½¿ç”¨@RequestParamä¸ç”¨é™åˆ¶requestä¼ å…¥å‚æ•°åç§°å’Œcontrolleræ–¹æ³•çš„å½¢å‚åç§°ä¸€è‡´.
+ *    è¯¥æ³¨è§£çš„å±æ€§required=trueæŒ‡å®šå‚æ•°å¿…é¡»ä¼ å…¥,å¦åˆ™è¿”å›400é”™è¯¯;å±æ€§defaultValueè®¾ç½®é»˜è®¤å€¼,æ²¡æœ‰ä¼ å…¥å‚æ•°åˆ™ä½¿ç”¨é»˜è®¤å€¼ä¸å½¢å‚ç»‘å®š.
+ * 5.ç»‘å®špojo:ä¼šæŒ‰è¯·æ±‚å‚æ•°åå’Œ POJO å±æ€§åè¿›è¡Œè‡ªåŠ¨åŒ¹é…ï¼Œè‡ªåŠ¨ä¸ºè¯¥å¯¹è±¡å¡«å……å±æ€§å€¼ã€‚æ”¯æŒçº§è”å±æ€§ã€‚
+ * 	  postä¹±ç :åœ¨web.xmlä¸­æ·»åŠ ç¼–ç çš„è¿‡æ»¤å™¨org.springframework.web.filter.CharacterEncodingFilter,å¹¶æŒ‡å®šä¸ºUTF-8å­—ç¬¦é›†
+ *    getä¹±ç :1)ä¿®æ”¹tomcatçš„é…ç½®æ–‡ä»¶,ä½¿å¾—å…¶ç¼–ç å’Œå·¥ç¨‹ä½¿ç”¨çš„ç¼–ç å­—ç¬¦é›†ä¸€è‡´;server.xml <Connector port="8090" protocol="HTTP/1.1" maxThreads="150" connectionTimeout="20000" redirectPort="8443" URIEncoding="utf-8"/>  
+ *    		  2)new String(request.getParameter("name").getBytes("ISO8859-1"),"UTF-8"),æ‰‹åŠ¨çš„å®Œæˆç¼–ç å­—ç¬¦é›†çš„è½¬æ¢;
+ * 6.è‡ªå®šä¹‰å‚æ•°ç»‘å®š:éœ€è¦å®ç°org.springframework.core.convert.converter.Converteræ¥å£å¹¶æ³¨å†Œåˆ°org.springframework.format.support.FormattingConversionServiceFactoryBeanä¸­ï¼Œå¹¶ä¸”æŠŠè‡ªå®šä¹‰çš„å‚æ•°ç»‘å®šç»„ä»¶æ³¨å†Œåˆ°HandlerAdapteré‡Œé¢.
+ * 		ä¸¤ç§æ³¨å…¥çš„æ–¹å¼: 1)<mvc:annotation-driven conversion-service="conversionService"/>(å¿…é¡»æ³¨é‡ŠRequestMappingHandlerAdapter,RequestMappingHandlerMapping,å¦åˆ™ä¼šå‡ºç°400é”™è¯¯ syntactically incorrect)
  * 					   2)<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter" p:webBindingInitializer="customBinder"/> <bean id="customBinder" class="org.springframework.web.bind.support.ConfigurableWebBindingInitializer" p:conversionService="conversionService"/>
  */
-/**	Êı¾İ»ØÏÔ: SpringMVCÄ¬ÈÏÖ§³ÖÊı¾İ»ØÏÔ,pojo´«ÈëController·½·¨ÖĞºó,SpringMVC×Ô¶¯½«pojoÊı¾İ·Åµ½requestÓò,keyÎªpojoµÄÀàĞÍ(Ê××ÖÄ¸Ğ¡Ğ´);
- * 		1. pojo»ØÏÔ:Ê¹ÓÃ@ModelAttribute("key")×¢½â¿ÉÒÔÎªrequestÓòÖĞµÄpojoÖ¸¶¨key.
- * 		2. ¼òµ¥ÀàĞÍµÄÊı¾İ»ØÏÔ:Ê¹ÓÃmodel°ÑÊı¾İ´«Èëµ½Ò³Ãæ.
+/**	æ•°æ®å›æ˜¾: SpringMVCé»˜è®¤æ”¯æŒæ•°æ®å›æ˜¾,pojoä¼ å…¥Controlleræ–¹æ³•ä¸­å,SpringMVCè‡ªåŠ¨å°†pojoæ•°æ®æ”¾åˆ°requeståŸŸ,keyä¸ºpojoçš„ç±»å‹(é¦–å­—æ¯å°å†™);
+ * 		1. pojoå›æ˜¾:ä½¿ç”¨@ModelAttribute("key")æ³¨è§£å¯ä»¥ä¸ºrequeståŸŸä¸­çš„pojoæŒ‡å®škey.
+ * 		2. ç®€å•ç±»å‹çš„æ•°æ®å›æ˜¾:ä½¿ç”¨modelæŠŠæ•°æ®ä¼ å…¥åˆ°é¡µé¢.
  */
-/** Òì³£½âÎö´¦ÀíÆ÷(ExceptionResolver)  SpringMVCÌá¹©È«¾ÖµÄÒì³£´¦ÀíÆ÷(Ò»¸öÏµÍ³Ö»ÓĞÒ»¸öÒì³£´¦ÀíÆ÷)½øĞĞÍ³Ò»µÄÒì³£´¦Àí.(Ô¤ÆÚÒì³£ºÍRuntimeÒì³£)
+/** å¼‚å¸¸è§£æå¤„ç†å™¨(ExceptionResolver)  SpringMVCæä¾›å…¨å±€çš„å¼‚å¸¸å¤„ç†å™¨(ä¸€ä¸ªç³»ç»Ÿåªæœ‰ä¸€ä¸ªå¼‚å¸¸å¤„ç†å™¨)è¿›è¡Œç»Ÿä¸€çš„å¼‚å¸¸å¤„ç†.(é¢„æœŸå¼‚å¸¸å’ŒRuntimeå¼‚å¸¸)
  */

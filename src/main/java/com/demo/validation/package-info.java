@@ -1,8 +1,8 @@
 /**
- *	ÔÚpojoÖÐ¶¨ÒåÐ£Ñé¹æÔò,¶øpojoÊÇ±»¶à¸öControllerËù¹²Ïí,µ±²»Í¬µÄController·½·¨¶ÔÍ¬Ò»¸öpojo½øÐÐÐ£Ñé,
- *	µ«ÊÇÃ¿Ò»¸öcontroller¶¼¾ßÓÐ²»Í¬µÄÐ£Ñé¹æÔò,ÕâÊ±ºò¾ÍÐèÒª·Ö×éÐ£Ñé.
+ *	åœ¨pojoä¸­å®šä¹‰æ ¡éªŒè§„åˆ™,è€Œpojoæ˜¯è¢«å¤šä¸ªControlleræ‰€å…±äº«,å½“ä¸åŒçš„Controlleræ–¹æ³•å¯¹åŒä¸€ä¸ªpojoè¿›è¡Œæ ¡éªŒ,
+ *	ä½†æ˜¯æ¯ä¸€ä¸ªcontrolleréƒ½å…·æœ‰ä¸åŒçš„æ ¡éªŒè§„åˆ™,è¿™æ—¶å€™å°±éœ€è¦åˆ†ç»„æ ¡éªŒ.
  *
- *	½â¾ö°ì·¨:  ¶¨Òå¶à¸öÐ£Ñé·Ö×é(ÆäÊµ¾ÍÊÇÒ»¸öjava½Ó¿Ú),±êÊ¶²»Í¬µÄÐ£Ñé¹æÔò.Ã¿¸öController·½·¨Ê¹ÓÃ²»Í¬µÄÐ£Ñé·Ö×é¹æÔò.
+ *	è§£å†³åŠžæ³•:  å®šä¹‰å¤šä¸ªæ ¡éªŒåˆ†ç»„(å…¶å®žå°±æ˜¯ä¸€ä¸ªjavaæŽ¥å£),æ ‡è¯†ä¸åŒçš„æ ¡éªŒè§„åˆ™.æ¯ä¸ªControlleræ–¹æ³•ä½¿ç”¨ä¸åŒçš„æ ¡éªŒåˆ†ç»„è§„åˆ™.
  *			
  */
 package com.demo.validation;

@@ -9,25 +9,25 @@ import org.springframework.web.servlet.ModelAndView;
 /** 
  *
  * @author DarkIdiot-PC
- * @date 2016Äê3ÔÂ9ÈÕ ÏÂÎç10:13:18
+ * @date 2016å¹´3æœˆ9æ—¥ ä¸‹åˆ10:13:18
  */
 public class HandlerInterceptor1 implements HandlerInterceptor{
 	
-	//½øÈëhandler ·½·¨Ö®Ç°
-	//Ó¦ÓÃ³¡¾°:Éí·İÈÏÖ¤ºÍÉí·İÊÚÈ¨
+	//è¿›å…¥handler æ–¹æ³•ä¹‹å‰
+	//åº”ç”¨åœºæ™¯:èº«ä»½è®¤è¯å’Œèº«ä»½æˆæƒ
 	@Override
 	public boolean preHandle(HttpServletRequest request,
 			HttpServletResponse response, Object handler) throws Exception {
 		
 		System.out.println("HandlerInterceptor1 ----> preHandle ");
 		
-		// return false; ±íÊ¾À¹½Ø²»ÏòÏÂ¼ÌĞøÖ´ĞĞ
-		// return true; ±êÊ¶·ÅĞĞ,¼ÌĞøÏòÏÂÖ´ĞĞ
+		// return false; è¡¨ç¤ºæ‹¦æˆªä¸å‘ä¸‹ç»§ç»­æ‰§è¡Œ
+		// return true; æ ‡è¯†æ”¾è¡Œ,ç»§ç»­å‘ä¸‹æ‰§è¡Œ
 		return true;
 	}
 	
-	//½øÈëhandler·½·¨Ö®ºó,ÔÚ·µ»ØModelAndViewÖ®Ç°
-	//Ó¦ÓÃ³¡¾°:¹«ÓÃµÄÄ£ĞÍÊı¾İµÄÌîĞ´(µ¼º½À¸Êı¾İÌîĞ´,²Ëµ¥À¸Êı¾İµÄÌîĞ´),²¢´«µİµ½ÊÓÍ¼.
+	//è¿›å…¥handleræ–¹æ³•ä¹‹å,åœ¨è¿”å›ModelAndViewä¹‹å‰
+	//åº”ç”¨åœºæ™¯:å…¬ç”¨çš„æ¨¡å‹æ•°æ®çš„å¡«å†™(å¯¼èˆªæ æ•°æ®å¡«å†™,èœå•æ æ•°æ®çš„å¡«å†™),å¹¶ä¼ é€’åˆ°è§†å›¾.
 	@Override
 	public void postHandle(HttpServletRequest request,
 			HttpServletResponse response, Object handler,
@@ -35,8 +35,8 @@ public class HandlerInterceptor1 implements HandlerInterceptor{
 		System.out.println("HandlerInterceptor1 ----> postHandle ");
 	}
 	
-	//Ö´ĞĞÍê³Éhandler·½·¨Ö®ºó
-	//Ó¦ÓÃ³¡¾°:Í³Ò»µÄÒì³£´¦Àí,Í³Ò»µÄÈÕÖ¾´¦Àí
+	//æ‰§è¡Œå®Œæˆhandleræ–¹æ³•ä¹‹å
+	//åº”ç”¨åœºæ™¯:ç»Ÿä¸€çš„å¼‚å¸¸å¤„ç†,ç»Ÿä¸€çš„æ—¥å¿—å¤„ç†
 	@Override
 	public void afterCompletion(HttpServletRequest request,
 			HttpServletResponse response, Object handler, Exception ex)

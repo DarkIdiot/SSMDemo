@@ -8,19 +8,19 @@ import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
- * È«¾ÖÒì³£´¦ÀíÆ÷
+ * å…¨å±€å¼‚å¸¸å¤„ç†å™¨
  */
 public class CustomerExceptionResolver implements HandlerExceptionResolver {
 
 	@Override
 	public ModelAndView resolveException(HttpServletRequest request,
 			HttpServletResponse response, Object handler, Exception ex) {
-		// handler¾ÍÊÇ´¦ÀíÆ÷ÊÊÅäÆ÷ÒªÖ´ĞĞµÄHandler¶ÔÏó(Ö»ÓĞÒ»¸ömethod·½·¨)
+		// handlerå°±æ˜¯å¤„ç†å™¨é€‚é…å™¨è¦æ‰§è¡Œçš„Handlerå¯¹è±¡(åªæœ‰ä¸€ä¸ªmethodæ–¹æ³•)
 		SystemException se = null;
 		if (ex instanceof SystemException) {
 			se = (SystemException) ex;
 		} else {
-			se = new SystemException("Î´Öª´íÎó");
+			se = new SystemException("æœªçŸ¥é”™è¯¯");
 		}
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("message", se.getMessage());

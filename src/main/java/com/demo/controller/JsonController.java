@@ -16,28 +16,28 @@ public class JsonController {
 	private UserService us;
 	
 	/**
-	 * ÇëÇóJSON,Êä³öJSON 
+	 * è¯·æ±‚JSON,è¾“å‡ºJSON 
 	 */
-	//@RequestBody ½«ÇëÇóĞÅÏ¢json´®×ª»»Îª¶ÔÓ¦µÄpojo¶ÔÏó.(ÊÊÓÃÓÚpojoÀàĞÍµÄ²ÎÊı,¶ÔÓÚ¼òµ¥ÀàĞÍÎŞ·¨°ó¶¨³É¹¦)
-	//@ResponseBody ½«pojo×ª»»Îªjson´®
+	//@RequestBody å°†è¯·æ±‚ä¿¡æ¯jsonä¸²è½¬æ¢ä¸ºå¯¹åº”çš„pojoå¯¹è±¡.(é€‚ç”¨äºpojoç±»å‹çš„å‚æ•°,å¯¹äºç®€å•ç±»å‹æ— æ³•ç»‘å®šæˆåŠŸ)
+	//@ResponseBody å°†pojoè½¬æ¢ä¸ºjsonä¸²
 	@RequestMapping("/test1")
 	public @ResponseBody User jsonTest1(@RequestBody User user){
 		return  user;
 	}
 	
 	/**
-	 * ÇëÇóKey/Value,Êä³öJSON 
+	 * è¯·æ±‚Key/Value,è¾“å‡ºJSON 
 	 */
-	//@ResponseBody ½«pojo×ª»»Îªjson´®
+	//@ResponseBody å°†pojoè½¬æ¢ä¸ºjsonä¸²
 	@RequestMapping("/test2")
 	public @ResponseBody User jsonTest2(int id){
 		return us.getUser(id);
 	}
 }
 /**
- * 1.SpringMVCÖĞÊ¹ÓÃjacksonµÄ°ü½øĞĞjson×ª»»(@requestBodyºÍ@responseBodyÊ¹ÓÃjackson-mapper-asl,jackson-core-aslÍê³Éjson×ª»»)
- * 2.ĞèÒªÅäÖÃJSON×ª»»Æ÷:<mvc:annotation-driven /> Ä¬ÈÏ°üº¬JSON×ª»»Æ÷.
- * »òÕßÔÚÊÊÅäÆ÷ÖĞÅäÖÃmessageConverters,²¢×¢Èëorg.springframework.http.converter.json.MappingJacksonHttpMessageConverter.
+ * 1.SpringMVCä¸­ä½¿ç”¨jacksonçš„åŒ…è¿›è¡Œjsonè½¬æ¢(@requestBodyå’Œ@responseBodyä½¿ç”¨jackson-mapper-asl,jackson-core-aslå®Œæˆjsonè½¬æ¢)
+ * 2.éœ€è¦é…ç½®JSONè½¬æ¢å™¨:<mvc:annotation-driven /> é»˜è®¤åŒ…å«JSONè½¬æ¢å™¨.
+ * æˆ–è€…åœ¨é€‚é…å™¨ä¸­é…ç½®messageConverters,å¹¶æ³¨å…¥org.springframework.http.converter.json.MappingJacksonHttpMessageConverter.
  * 	eg:
  * 		<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
  *		<property name="messageConverters">

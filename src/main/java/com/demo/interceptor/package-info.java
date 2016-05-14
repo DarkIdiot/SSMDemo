@@ -1,13 +1,13 @@
 /**
- * SpringMVCÖĞµÄ´¦ÀíÆ÷À¹½ØÆ÷ÀàËÆÓÚServlet¿ª·¢ÖĞµÄ¹ıÂËÆ÷Filter,ÓÃÓÚ¶Ô´¦ÀíÆ÷½øĞĞÔ¤´¦ÀíºÍºó´¦Àí.
+ * SpringMVCä¸­çš„å¤„ç†å™¨æ‹¦æˆªå™¨ç±»ä¼¼äºServletå¼€å‘ä¸­çš„è¿‡æ»¤å™¨Filter,ç”¨äºå¯¹å¤„ç†å™¨è¿›è¡Œé¢„å¤„ç†å’Œåå¤„ç†.
  * 
- * ×Ô¶¨ÒåÀ¹½ØÆ÷:(ÊµÏÖorg.springframework.web.servlet.HandlerInterceptor½Ó¿Ú)
- * 		À¹½ØÆ÷µÄ»úÖÆÊÇ»ùÓÚAOPµÄÊµÏÖ·½Ê½.
+ * è‡ªå®šä¹‰æ‹¦æˆªå™¨:(å®ç°org.springframework.web.servlet.HandlerInterceptoræ¥å£)
+ * 		æ‹¦æˆªå™¨çš„æœºåˆ¶æ˜¯åŸºäºAOPçš„å®ç°æ–¹å¼.
  */
 package com.demo.interceptor;
 /** 
- * 1.SpringMVCÀ¹½ØÆ÷Õë¶ÔHandlerMapping½øĞĞÀ¹½ØÉèÖÃ
- * Èç¹ûÔÚÄ³¸öHandlerMappingÖĞÅäÖÃÀ¹½Ø,¾­¹ı¸ÃHandlerMappingÓ³Éä³É¹¦µÄhandler×îÖÕÊ¹ÓÃ¸ÃÀ¹½ØÆ÷.(ÔÚÅäÖÃÎÄ¼şÖĞ¿ÉÒÔÍ¬Ê±ÅäÖÃ¶à¸öHandlerMapping)
+ * 1.SpringMVCæ‹¦æˆªå™¨é’ˆå¯¹HandlerMappingè¿›è¡Œæ‹¦æˆªè®¾ç½®
+ * å¦‚æœåœ¨æŸä¸ªHandlerMappingä¸­é…ç½®æ‹¦æˆª,ç»è¿‡è¯¥HandlerMappingæ˜ å°„æˆåŠŸçš„handleræœ€ç»ˆä½¿ç”¨è¯¥æ‹¦æˆªå™¨.(åœ¨é…ç½®æ–‡ä»¶ä¸­å¯ä»¥åŒæ—¶é…ç½®å¤šä¸ªHandlerMapping)
  * <bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping" >
  *		<property name="interceptors">
  *			<list>
@@ -19,7 +19,7 @@ package com.demo.interceptor;
  *	<bean id="handlerInterceptor1" class="com.demo.interceptor.HandlerInterceptor1"/>
  *	<bean id="handlerInterceptor2" class="com.demo.interceptor.HandlerInterceptor2"/>
  * 
- * 2.SpringMVC¿ÉÒÔ±äÏàµÄÅäÖÃÀàËÆÓÚµÄÈ«¾ÖµÄÀ¹½ØÆ÷£¬SrpingMVC¿ò¼Ü½«ÅäÖÃµÄÀàËÆÈ«¾ÖµÄÀ¹½ØÆ÷×¢Èëµ½Ã¿¸öHandlerMappingÖĞ.
+ * 2.SpringMVCå¯ä»¥å˜ç›¸çš„é…ç½®ç±»ä¼¼äºçš„å…¨å±€çš„æ‹¦æˆªå™¨ï¼ŒSrpingMVCæ¡†æ¶å°†é…ç½®çš„ç±»ä¼¼å…¨å±€çš„æ‹¦æˆªå™¨æ³¨å…¥åˆ°æ¯ä¸ªHandlerMappingä¸­.
  * 	<mvc:interceptors>
  *		<mvc:interceptor>
  *			<mvc:mapping path="/**" />

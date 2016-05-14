@@ -12,16 +12,16 @@ public class ItemsController implements Controller {
 			HttpServletResponse response) throws Exception {
 
 		/*
-		 * ÒµÎñÂß¼­
+		 * ä¸šåŠ¡é€»è¾‘
 		 */
 
-		// ·µ»ØModelAndView
+		// è¿”å›ModelAndView
 		ModelAndView modelAndView = new ModelAndView();
-		// Ïàµ±ÓÚrequest.setAttribute(Object,Object);
+		// ç›¸å½“äºrequest.setAttribute(Object,Object);
 		modelAndView.addObject("result", "success");
-		// Ö¸¶¨ÊÓÍ¼
+		// æŒ‡å®šè§†å›¾
 		//modelAndView.setViewName("/WEB-INF/jsp/success.jsp");
-			//ÎªÊÓÍ¼½âÎöÆ÷ÅäÖÃÇ°×ººÍºó×ººó
+			//ä¸ºè§†å›¾è§£æå™¨é…ç½®å‰ç¼€å’Œåç¼€å
 			modelAndView.setViewName("success");
 		return modelAndView;
 	}

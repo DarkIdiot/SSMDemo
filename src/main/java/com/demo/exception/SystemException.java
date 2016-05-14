@@ -3,7 +3,7 @@ package com.demo.exception;
 /** 
  *
  * @author DarkIdiot-PC
- * @date 2016Äê3ÔÂ9ÈÕ ÉÏÎç11:35:02
+ * @date 2016å¹´3æœˆ9æ—¥ ä¸Šåˆ11:35:02
  */
 @SuppressWarnings("serial")
 public class SystemException extends Exception{

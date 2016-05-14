@@ -12,30 +12,30 @@ import org.springframework.web.servlet.ModelAndView;
 /** 
  *
  * @author DarkIdiot-PC
- * @date 2016Äê3ÔÂ6ÈÕ ÏÂÎç11:55:34
+ * @date 2016å¹´3æœˆ6æ—¥ ä¸‹åˆ11:55:34
  */
 public class ItemsHttpRequestHandler implements HttpRequestHandler{
 	/**
-	 * ´ËÀàÊÊÅäÆ÷¿ÉÒÔÍ¨¹ıresponseĞŞ¸Ä¶¨ÒåÏìÓ¦µÄÄÚÈİ,±ÈÈçjsonÊı¾İ.
+	 * æ­¤ç±»é€‚é…å™¨å¯ä»¥é€šè¿‡responseä¿®æ”¹å®šä¹‰å“åº”çš„å†…å®¹,æ¯”å¦‚jsonæ•°æ®.
 	 * 			response.setCharacterEncoding("UTF-8");
 	 * 			response.setContentType("application/json,charset=utf-8");
-	 * 			response.getWriter().write("json´®");
+	 * 			response.getWriter().write("jsonä¸²");
 	 */
 	@Override
 	public void handleRequest(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		/*
-		 * ÒµÎñÂß¼­
+		 * ä¸šåŠ¡é€»è¾‘
 		 */
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("application/json,charset=utf-8");
-		response.getWriter().write("json´®");
+		response.getWriter().write("jsonä¸²");
 
-		//ÀàËÆÓÚservletµÄ±à³Ì.  
+		//ç±»ä¼¼äºservletçš„ç¼–ç¨‹.  
 		request.setAttribute("result", "success");
-		//×ª·¢£¬ÓÉÓÚÊÇµ÷ÓÃµÄÔ­ÉúµÄservlet api,ËùÒÔ¶ÔÓÚÊÓÍ¼½âÎöÆ÷ÅäÖÃµÄÇ°×ººÍºó×º²»»á¶Ô´ËhandlerÉúĞ§.
+		//è½¬å‘ï¼Œç”±äºæ˜¯è°ƒç”¨çš„åŸç”Ÿçš„servlet api,æ‰€ä»¥å¯¹äºè§†å›¾è§£æå™¨é…ç½®çš„å‰ç¼€å’Œåç¼€ä¸ä¼šå¯¹æ­¤handlerç”Ÿæ•ˆ.
 		request.getRequestDispatcher("/WEB-INF/jsp/success.jsp").forward(request, response);
-		//ÖØ¶¨Ïò
+		//é‡å®šå‘
 //		response.sendRedirect("/WEB-INF/jsp/success.jsp"); 
 	}
 

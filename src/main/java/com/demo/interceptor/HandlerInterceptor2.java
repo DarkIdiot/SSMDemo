@@ -9,32 +9,32 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.demo.model.User;
 /**
- * µÇÂ½ÈÏÖ¤À¹½ØÆ÷µÄÊµÏÖ
+ * ç™»é™†è®¤è¯æ‹¦æˆªå™¨çš„å®ç°
  */
 public class HandlerInterceptor2 implements HandlerInterceptor{
 	/**
-	 * À¹½ØÆ÷·½·¨Ö´ĞĞË³Ğò:
-	 * preHandle °´ÕÕÀ¹½ØÆ÷Ë³Ğò,Ë³ĞòÖ´ĞĞ.
-	 * postHandle,afterCompletion °´ÕÕÀ¹½ØÆ÷Ë³Ğò,ÄæĞòÖ´ĞĞ.
+	 * æ‹¦æˆªå™¨æ–¹æ³•æ‰§è¡Œé¡ºåº:
+	 * preHandle æŒ‰ç…§æ‹¦æˆªå™¨é¡ºåº,é¡ºåºæ‰§è¡Œ.
+	 * postHandle,afterCompletion æŒ‰ç…§æ‹¦æˆªå™¨é¡ºåº,é€†åºæ‰§è¡Œ.
 	 */
 	/**
-	 * À¹½ØÆ÷À¹½Ø¹æÂÉ:	À¹½ØÆ÷1·ÅĞĞ,À¹½ØÆ÷2µÄpreHandle·½·¨²Å»áÖ´ĞĞ.
-	 * 					À¹½ØÆ÷preHandle²»·ÅĞĞ,ÆäÀ¹½ØÆ÷µÄpostHandle,afterCompletion·½·¨¶¼²»»áÖ´ĞĞ.
-	 * 					Ö»ÒªÓĞÒ»¸öÀ¹½ØÆ÷²»·ÅĞĞ,À¹½ØÆ÷Á´ÖĞµÄËùÓĞµÄÀ¹½ØÆ÷µÄpostHandle·½·¨¶¼²»»á±»Ö´ĞĞ.
+	 * æ‹¦æˆªå™¨æ‹¦æˆªè§„å¾‹:	æ‹¦æˆªå™¨1æ”¾è¡Œ,æ‹¦æˆªå™¨2çš„preHandleæ–¹æ³•æ‰ä¼šæ‰§è¡Œ.
+	 * 					æ‹¦æˆªå™¨preHandleä¸æ”¾è¡Œ,å…¶æ‹¦æˆªå™¨çš„postHandle,afterCompletionæ–¹æ³•éƒ½ä¸ä¼šæ‰§è¡Œ.
+	 * 					åªè¦æœ‰ä¸€ä¸ªæ‹¦æˆªå™¨ä¸æ”¾è¡Œ,æ‹¦æˆªå™¨é“¾ä¸­çš„æ‰€æœ‰çš„æ‹¦æˆªå™¨çš„postHandleæ–¹æ³•éƒ½ä¸ä¼šè¢«æ‰§è¡Œ.
 	 * 
-	 * 	Àí½âÓ¦ÓÃ: eg.Í³Ò»µÄÈÕÖ¾´¦ÀíÀ¹½ØÆ÷:ĞèÒª¸ÄÀ¹½ØÆ÷µÄpreHandle±ØĞë·ÅĞĞ,ÇÒ¸ÃÀ¹½ØÆ÷±ØĞëÒªÔÚÀ¹½ØÆ÷Á´µÄµÚÒ»Î»,²ÅÄÜ±£Ö¤¸ÃÀ¹½ØÆ÷µÄafterCompletion±Ø¶¨Ö´ĞĞ.
-	 * 			  eg.µÇÂ½ÈÏÖ¤µÄÀ¹½ØÆ÷(·ÅÔÚÈÕÖ¾À¹½ØÆ÷Ö®ºó),È¨ÏŞĞ£ÑéµÄÀ¹½ØÆ÷(·ÅÔÚµÇÂ½À¹½ØÆ÷Ö®ºó)
+	 * 	ç†è§£åº”ç”¨: eg.ç»Ÿä¸€çš„æ—¥å¿—å¤„ç†æ‹¦æˆªå™¨:éœ€è¦æ”¹æ‹¦æˆªå™¨çš„preHandleå¿…é¡»æ”¾è¡Œ,ä¸”è¯¥æ‹¦æˆªå™¨å¿…é¡»è¦åœ¨æ‹¦æˆªå™¨é“¾çš„ç¬¬ä¸€ä½,æ‰èƒ½ä¿è¯è¯¥æ‹¦æˆªå™¨çš„afterCompletionå¿…å®šæ‰§è¡Œ.
+	 * 			  eg.ç™»é™†è®¤è¯çš„æ‹¦æˆªå™¨(æ”¾åœ¨æ—¥å¿—æ‹¦æˆªå™¨ä¹‹å),æƒé™æ ¡éªŒçš„æ‹¦æˆªå™¨(æ”¾åœ¨ç™»é™†æ‹¦æˆªå™¨ä¹‹å)
 	 */
 	@Override
 	public boolean preHandle(HttpServletRequest request,
 			HttpServletResponse response, Object handler) throws Exception {
 		System.out.println("HandlerInterceptor2 ----> preHandle ");
 		
-		//»ñµÃÇëÇóµÄurl
+		//è·å¾—è¯·æ±‚çš„url
 		StringBuffer url = request.getRequestURL();
-		//ÅĞ¶ÏÊÇ·ñÊôÓÚ¹«¿ªµØÖ·,·ÅĞĞ
+		//åˆ¤æ–­æ˜¯å¦å±äºå…¬å¼€åœ°å€,æ”¾è¡Œ
 		
-		//Èç¹ûÊÇ½øÈëµÇÂ½¼ûÃæ,·ÅĞĞ
+		//å¦‚æœæ˜¯è¿›å…¥ç™»é™†è§é¢,æ”¾è¡Œ
 		if (url.indexOf("login") >= 0) {
 			return true;
 		}

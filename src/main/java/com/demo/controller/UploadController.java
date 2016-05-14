@@ -21,7 +21,7 @@ public class UploadController {
 			String path = "D:\\Tomcat\\temp\\";
 			newFileName = UUID.randomUUID()+originalFilename.substring(originalFilename.lastIndexOf('.'));
 			File newFile = new File(path+newFileName);
-			//½«ÄÚ´æÖĞµÄÊı¾İĞ´Èë´ÅÅÌ
+			//å°†å†…å­˜ä¸­çš„æ•°æ®å†™å…¥ç£ç›˜
 			file.transferTo(newFile);
 		}
 		ModelAndView mv = new ModelAndView();

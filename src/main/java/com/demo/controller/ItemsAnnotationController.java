@@ -7,12 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.demo.service.UserService;
-
 /** 
  *
  * @author DarkIdiot-PC
- * @date 2016Äê3ÔÂ7ÈÕ ÉÏÎç9:28:40
+ * @date 2016å¹´3æœˆ7æ—¥ ä¸Šåˆ9:28:40
  */
 @Controller
 public class ItemsAnnotationController {
@@ -22,16 +20,16 @@ public class ItemsAnnotationController {
 			HttpServletResponse response) throws Exception {
 
 		/*
-		 * ÒµÎñÂß¼­
+		 * ä¸šåŠ¡é€»è¾‘
 		 */
 
-		// ·µ»ØModelAndView
+		// è¿”å›ModelAndView
 		ModelAndView modelAndView = new ModelAndView();
-		// Ïàµ±ÓÚrequest.setAttribute(Object,Object);
+		// ç›¸å½“äºrequest.setAttribute(Object,Object);
 		modelAndView.addObject("result", "success");
-		// Ö¸¶¨ÊÓÍ¼
+		// æŒ‡å®šè§†å›¾
 		//modelAndView.setViewName("/WEB-INF/jsp/success.jsp");
-			//ÎªÊÓÍ¼½âÎöÆ÷ÅäÖÃÇ°×ººÍºó×ººó
+			//ä¸ºè§†å›¾è§£æå™¨é…ç½®å‰ç¼€å’Œåç¼€å
 		modelAndView.setViewName("success");
 		return modelAndView;
 	}

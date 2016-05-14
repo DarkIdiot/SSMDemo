@@ -16,7 +16,7 @@ public class RESTFulController {
 	@Autowired
 	private UserService us;
 	/**
-	 * {XXX}ռλ��,�����URL�������������,����ͨ���ڷ�����ʹ��@@PathVariable��ȡ{XXX}�е�XXX����.
+	 * {XXX}占位符,请求的URL可以是如何数字,可以通过在方法中使用@@PathVariable获取{XXX}中的XXX变量.
 	 */
 	@RequestMapping(value="/user/{id}",method={RequestMethod.GET})
 	public ModelAndView getUser(@PathVariable("id") Integer id ){
@@ -27,12 +27,12 @@ public class RESTFulController {
 	}
 }
 /**
- * RESTFul����URL:1.ʹ��ռλ�����ݱ�Ҫ�Ĳ���;2.���ݲ�ͬ��CRUD����,ʹ�ò�ͬ�����󷽷�����ָ�������HTTP�ķ���
- * 		��׼��get��RESTFul��ʽ����:@RequestMapping(value="/user/{id}",method={RequestMethod.GET})
+ * RESTFul风格的URL:1.使用占位符传递必要的参数;2.根据不同的CRUD操作,使用不同的请求方法参数指定请求的HTTP的方法
+ * 		标准的get的RESTFul方式配置:@RequestMapping(value="/user/{id}",method={RequestMethod.GET})
  */
-/**	����ǰ�˿�������url-parttenʹ�� '/'�����ھ�̬��Դ����400����.
- *	  �������: 
- * �Ծ�̬��Դ�Ľ���:(����ʹ��RESTFul����URL,��̬��Դ�ļ�������URL�޷���Ӧһ��handler.) 
- * 		���û���κ�β׺��url��ʹ��spring��DispatcherServlet���й��ˣ���β׺��jsp��ֱ�ӷ��ʣ�������SpringMVC�Ĺ���.
- * 	<mvc:resources location="/js/" mapping="/js/**"/>  ָ����Դ�ļ��Ķ�Ӧӳ���ϵ(���е�ҳ�����õ�/js/**����Դ����/js/������в���)
+/**	配置前端控制器的url-partten使用 '/'，对于静态资源出现400错误.
+ *	  解决方案: 
+ * 对静态资源的解析:(由于使用RESTFul风格的URL,静态资源文件的请求URL无法对应一个handler.) 
+ * 		如果没有任何尾缀的url则使用spring的DispatcherServlet进行过滤，若尾缀是jsp就直接访问，不经过SpringMVC的过滤.
+ * 	<mvc:resources location="/js/" mapping="/js/**"/>  指定资源文件的对应映射关系(所有的页面引用到/js/**的资源都从/js/里面进行查找)
  */
